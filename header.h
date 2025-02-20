@@ -3,7 +3,7 @@
 #include <string.h>
 #include <limits.h>
 
-int p_1(char *input) {
+int firstCheck(char *input) {
     if (input[0] == '-') {
         for (int i = 1; input[i] != '\n' && input[i] != '\0'; i++) {
             if (input[i] < '0' || input[i] > '9') {
@@ -20,9 +20,9 @@ int p_1(char *input) {
     return 1;
 }
 
-int p_2(char* input, int* integer) {
+int secondCheck(char* input, int* integer) {
     int temp;
-    if (p_1(input) && sscanf(input, "%d", &temp) == 1) {
+    if (firstCheck(input) && sscanf(input, "%d", &temp) == 1) {
         *integer = temp;
         return 1;
     } else {
@@ -35,7 +35,7 @@ int p() {
     int Int = 0;
     while (1) {
         fgets(in, sizeof(in), stdin);
-        if (p_2(in, &Int) == 1) {
+        if (secondCheck(in, &Int) == 1) {
             break;
         } else if (in[0] == '\n') {
             return INT_MIN;
